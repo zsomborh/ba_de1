@@ -137,3 +137,22 @@ call order_shipped();
 select * from messages;
 
 
+-------------
+-- Exercise6: Copy the birdstrikes structure into a new tabe called birdstrikes2. Insert into birdstrikes2 the line where id is 10.
+-- Hints:
+-- Use the samples from Chapter2 for copy
+-- For insert user the format like: INSERT INTO bla SELECT blabla
+------------
+
+CREATE TABLE birdstrikes2 LIKE birdstrikes;
+INSERT INTO birdstrikes2 select * from birdstrikes where id = 10;
+
+-------------
+-- Exercise7: Create a view, which contains product_sales rows of 2003 and 2005. How many row has the resulting view?
+-------------
+drop view if exists product_sales_2003_2005;
+
+CREATE view product_sales_2003_2005 as 
+	select * from product_sales where year(date) in (2003,2005);
+
+select count(*) from product_sales_2003_2005;
