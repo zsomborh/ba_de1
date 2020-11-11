@@ -1,12 +1,12 @@
--- Add Description and goal of the analysis + source of data () 
 
 --------
 -- First I create the schema to work within 
--- 		Then I create the tables that will basically serve as my operational layer 
+-- 		Then I create the tables that will serve as the operational layer 
+-- 		Data was downloaded from: https://www.kaggle.com/hugomathien/soccer
 -------
 
--- drop schema if exists assignment_football;
--- create schema assignment_football;
+drop schema if exists assignment_football;
+create schema assignment_football;
 
 use assignment_football;
 
