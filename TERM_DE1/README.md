@@ -23,3 +23,18 @@ My operational layer consists of [7 tables stored in csv](https://github.com/zso
     * **player_attributes** table shows qualitative and quantitative attributes of given player in a given date
     
 ![Database diagram](/TERM_DE1/EER_diagramm_players_only.png)
+
+There are two issues with my database that I will have to address. Firstly, there are many missing data in my tables which is an issue not only for missing attributes but also for missing IDs. Secondly, there is no direct link between teams and players - they are connected only by the matches table. Moreover players connection to the matches is a bit tricky, in each row matches table there are 22 players IDs that can serve as a foreign key when linking matches and players.
+
+Files were loaded into MySQL with these [queries](/TERM_DE1/Assignment-Operational_layer.sql).
+
+###  Analytics plan ###
+
+I was hired by a football club with a long history of great achievements, but with a lack of success in recent years. The board decided to invest a lot of money with the goal of finding talented players that could help the team reach it's prior glory. They decided that statistics is the way to go. In the name of development, they acquired a huge bulk of data to support their analytics teams currently employed by the club, but they are missing a central database to accomodate this data. They want something that can be used on the long run - meaning that they not only want to load this data up, but want the system to be able to handle new records as well. 
+
+The three analytcal groups cover the following areas: 
+ - the first one looks at the skills of players (e.g. how good are they with headers, acceleration, shot power)
+ - the second looks at player development to further predict their potential
+ - the third is responsible to create reports and visualisation to the board. Their need is to have a data structure with a lot of dimensions (name of the teams, the league and country in wihch they play etc...)
+ 
+ My analytics plan will cover three steps. 1) Loading the data bulk into SQL  2) Creating the analytical layer with ETLs that transform the data and denormalise the current tables to the best of my abilites 3) Create data marts for the analytical teams
