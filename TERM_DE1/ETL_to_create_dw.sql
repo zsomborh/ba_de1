@@ -1,25 +1,23 @@
+use assignment_football;
+
 SELECT DISTINCT lc.country_name
 	,lc.league_name
 	,t.team_long_name
 	,t.team_short_name
-	,m.player
-	,m.player_affiliation
-	,m.match_date
-	,m.home_team_goal
-	,m.away_team_goal
+	,left(m.match_date,4) as Date
 	,m.season
 	,p.birthday
 	,p.height
 	,p.weight
 	,p.player_name
-	,ta.buildUpPlaySpeed
-	,ta.buildUpPlayPassing
-	,ta.chanceCreationPassing
-	,ta.chanceCreationCrossing
-	,ta.chanceCreationShooting
-	,ta.defencePressure
-	,ta.defenceAggression
-	,ta.defenceTeamWidth
+	,ta.buildUpPlaySpeed as team_buildup_speed
+	,ta.buildUpPlayPassing as team_buildup_passing 
+	,ta.chanceCreationPassing as team_chancecreation_passing
+	,ta.chanceCreationCrossing as team_chancecreation_crossing
+	,ta.chanceCreationShooting as team_chancecreation_shooting
+	,ta.defencePressure as team_defence_pressure 
+	,ta.defenceAggression as team_defence_aggression
+	,ta.defenceTeamWidth as team_defence_width
 	,pa.crossing
 	,pa.finishing
 	,pa.heading_accuracy
@@ -208,160 +206,6 @@ FROM (
 		,home_player_11 AS player
 		,'home_player' AS player_affiliation
 	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_1 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_2 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_3 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_4 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_5 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_6 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_7 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_8 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_9 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_10 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
-	
-	UNION ALL
-	
-	SELECT country_id
-		,league_id
-		,match_date
-		,home_team_goal
-		,away_team_goal
-		,season
-		,home_team_api_id
-		,away_team_api_id
-		,away_player_11 AS player
-		,'away_player' AS player_affiliation
-	FROM matches
 	) m
 LEFT JOIN (
 	SELECT l.league_id
@@ -420,4 +264,5 @@ LEFT JOIN (
 		,preferred_foot
 		,player_api_id
 	) pa ON left(pa.player_date, 4) = left(m.match_date, 4)
-	AND pa.player_api_id = p.player_api_id;
+	AND pa.player_api_id = p.player_api_id
+    where player_name = 'Stijn Stijnen';
