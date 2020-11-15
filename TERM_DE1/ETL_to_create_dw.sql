@@ -1,5 +1,17 @@
 use assignment_football;
 
+drop procedure if exists ETL_Data_Warehouse; 
+
+DELIMITER $$ 
+
+Create procedure ETL_Data_Warehouse()
+
+BEGIN
+
+Drop table if exists dw_football;
+
+create table dw_football as 
+
 SELECT DISTINCT lc.country_name
 	,lc.league_name
 	,t.team_long_name
@@ -265,4 +277,11 @@ LEFT JOIN (
 		,player_api_id
 	) pa ON left(pa.player_date, 4) = left(m.match_date, 4)
 	AND pa.player_api_id = p.player_api_id
-    where player_name = 'Stijn Stijnen';
+    order by left(m.match_date,4), p.player_name
+    ;
+    
+    END $$
+    
+    DELIMITER ;
+    
+    Call ETL_Data_Warehouse();
