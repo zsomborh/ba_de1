@@ -1,6 +1,4 @@
 --------
--- First I create the schema to work within 
--- 		Then I create the tables that will serve as the operational layer 
 -- 		Data was downloaded from: https://www.kaggle.com/hugomathien/soccer
 -------
 DROP SCHEMA
@@ -69,6 +67,12 @@ IF EXISTS players;
 		,weight SMALLINT
 		,PRIMARY KEY (player_api_id)
 		);
+
+LOAD DATA INFILE 'c:/ProgramData/MySQL/MySQL Server 8.0/Uploads/player.csv'
+INTO TABLE players CHARACTER
+
+SET CP1250 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' ignore 1 rows;
+
 
 DROP TABLE
 
@@ -206,10 +210,6 @@ INTO TABLE team_attributes CHARACTER
 SET CP1250 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' ignore 1 rows(id, team_fifa_api_id, team_api_id, team_date, buildUpPlaySpeed, buildUpPlaySpeedClass, @buildUpPlayDribbling, buildUpPlayDribblingClass, buildUpPlayPassing, buildUpPlayPassingClass, buildUpPlayPositioningClass, chanceCreationPassing, chanceCreationPassingClass, chanceCreationCrossing, chanceCreationCrossingClass, chanceCreationShooting, chanceCreationShootingClass, chanceCreationPositioningClass, defencePressure, defencePressureClass, defenceAggression, defenceAggressionClass, defenceTeamWidth, defenceTeamWidthClass, defenceDefenderLineClass)
 SET buildUpPlayDribbling = nullif(@buildUpPlayDribbling, 'NA');
 
-LOAD DATA INFILE 'c:/ProgramData/MySQL/MySQL Server 8.0/Uploads/player.csv'
-INTO TABLE players CHARACTER
-
-SET CP1250 FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' ignore 1 rows;
 
 DROP TABLE
 
