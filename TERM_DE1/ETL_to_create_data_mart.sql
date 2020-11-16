@@ -41,9 +41,9 @@ BEGIN
 				,f.weight
 				,f.height
 				,f.birthday
-				,round(DATE - year(birthday), 0) AS Age
 				,f.team_long_name
 				,f.preferred_foot
+                ,round(avg(DATE - year(birthday)), 0) AS Age
 				,round((avg(f.overall_rating)), 2) AS overall_rating
 				,round((avg(f.potential)), 2) AS potential
 				,round((avg(finishing) + avg(heading_accuracy) + avg(volleys) + avg(dribbling) + avg(acceleration) + avg(sprint_speed) + avg(shot_power) + avg(jumping) + avg(strength) + avg(long_shots)) / 10, 2) AS Attack_Skills
@@ -89,7 +89,6 @@ BEGIN
 				,f.weight
 				,f.height
 				,f.birthday
-				,round(DATE - year(birthday), 0)
 				,f.team_long_name
 				,f.preferred_foot;
 
