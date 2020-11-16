@@ -51,7 +51,7 @@ In the analytical layer I created one central denormalised data warehouse with a
 
 Analytical layer was created using the following [queries](/TERM_DE1/analytics_plan.PNG).
 
-![DW diagram](/TERM_DE1/analytics_plan.PNG)
+![DW diagram](/TERM_DE1/analytics_plan.png)
 
 ###  Data Mart ###
  
