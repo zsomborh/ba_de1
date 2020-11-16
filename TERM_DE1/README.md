@@ -43,15 +43,15 @@ My analytics plan is the following:
 
 This is illustrated in the below figure: 
 
-![Analytics plan diagram](/TERM_DE1/ETL_to_create_dw.sql)
+![Analytics plan diagram](/TERM_DE1/analytics_plan.png)
 
 ###  Analytical layer ###
  
 In the analytical layer I created one central denormalised data warehouse with a player in each observation in a given year. Firstly, I transposed all 12 home player columns into rows in the matches table - this way the granularity of the table was changed to players instead of matches. I used home players and home teams only to reduce complexity, but with this I sacrificed information such as the outcome of given match which is not a huge issue since it's unnecessary in the context of the task. Secondly, I joined the other tables with leage, country, team and player information, paying extra care to dates, when the table had a date dimension. Every observation where player ID was not available, was dropped. To reduce the complexity of data, I omitted the month and day information in any available date and joined based on *Year* information only. If I had more than one observation in a year for a given entity, I used the average of quantitative variables (the only table that required such a transformation was the **player_attributes** table). The below figure gives a glimpse of the information stored in the data warehouse. 
 
-Analytical layer was created using the following [queries](/TERM_DE1/analytics_plan.PNG).
+Analytical layer was created using the following [queries](/TERM_DE1/ETL_to_create_dw.sql).
 
-![DW diagram](/TERM_DE1/analytics_plan.png)
+![DW diagram](/TERM_DE1/data_warehouse.PNG)
 
 ###  Data Mart ###
  
